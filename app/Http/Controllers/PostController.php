@@ -24,15 +24,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StorePostRequest $request)
-    {
-        //
+        return view('posts.create');
     }
 
     /**
@@ -40,15 +32,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdatePostRequest $request, Post $post)
-    {
-        //
+        return view('posts.edit', compact('post'));
     }
 
     /**

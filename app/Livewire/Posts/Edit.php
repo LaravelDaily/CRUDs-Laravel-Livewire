@@ -3,13 +3,14 @@
 namespace App\Livewire\Posts;
 
 use App\Models\Post;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 
-class Create extends Component
+class Edit extends Component
 {
+    public Post $post;
+
     #[Validate('required|min:5')]
     public string $title = '';
 
@@ -19,27 +20,31 @@ class Create extends Component
     #[Validate('required|min:5')]
     public string $body = '';
 
-    public function render(): View
+    public function mount(Post $post): void
     {
-        return view('livewire.posts.create');
+        $this->post = $post;
+
+        $this->title = $post->title;
+        $this->slug = $post->slug;
+        $this->body = $post->body;
     }
 
-    public function updatedTitle(): void
+    public function render(): View
     {
-        $this->slug = str()->slug($this->title);
+        return view('livewire.posts.edit');
     }
 
     public function save(): void
     {
         $this->validate();
 
-        Post::create([
+        $this->post->update([
             'title' => $this->title,
             'slug' => $this->slug,
             'body' => $this->body,
         ]);
 
-        session()->flash('message', 'Post created successfully');
+        session()->flash('message', 'Post updated successfully');
 
         $this->redirectRoute('posts.index');
     }

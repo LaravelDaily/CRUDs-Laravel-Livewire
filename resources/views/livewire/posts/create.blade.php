@@ -5,7 +5,7 @@
         <!-- Title -->
         <div>
             <x-input-label for="title" :value="__('Title')" required />
-            <x-text-input wire:model.blur="title" id="title" class="block mt-1 w-full" type="text" required autofocus />
+            <x-text-input wire:model.live.debounce.1s="title" id="title" class="block mt-1 w-full" type="text" required autofocus />
             <x-input-error :messages="$errors->get('title')" class="mt-2" />
         </div>
 

@@ -17,7 +17,7 @@ class Edit extends Component
     #[Validate('required|min:5')]
     public string $slug = '';
 
-    #[Validate('required|min:5')]
+    #[Validate('required|min:5|max:1000')]
     public string $body = '';
 
     public function mount(Post $post): void

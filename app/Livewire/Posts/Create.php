@@ -3,7 +3,6 @@
 namespace App\Livewire\Posts;
 
 use App\Models\Post;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
